@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Odliczanie czasu do Wigilii</title>
+  <style>
+    body {
+      background-color: #F8D1C3;
+      text-align: center;
+      font-family: sans-serif;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin: 20px 0;
+    }
+
+    #czas {
+      font-size: 36px;
+      color: #A61D00;
+    }
+
+    #obrazek {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <img src="choinka.jpg" id="obrazek" alt="Choinka">
+  <h1>Odliczanie czasu do Wigilii</h1>
+  <div id="czas">--</div>
+	
+	<audio src="muzyka.mp3" autoplay loop></audio>
+	
+  <script>
+    // Ustawiamy datę Wigilii
+    const dataDocelowa = new Date("2022-12-24 00:00:00");
+
+    // Funkcja odliczająca czas do Wigilii
+    function odliczaj() {
+      // Pobieramy aktualną datę
+      const dataAktualna = new Date();
+
+      // Obliczamy różnicę pomiędzy datami w milisekundach
+      const roznica = dataDocelowa - dataAktualna;
+
+      // Obliczamy ilość dni, godzin, minut i sekund do Wigilii
+      const dni = Math.floor(roznica / (1000 * 60 * 60 * 24));
+      const godziny = Math.floor((roznica % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minuty = Math.floor((roznica % (1000 * 60 * 60)) / (1000 * 60));
+      const sekundy = Math.floor((roznica % (1000 * 60)) / 1000);
+
+      // Wstawiamy obliczone wartości do elementu na stronie
+      document.getElementById("czas").innerHTML = dni + " dni, " + godziny + " godzin, " + minuty + " minut, " + sekundy + " sekund";
+    }
+
+    // Wywołujemy funkcję odliczającą co 1000 milisekund (1 sekunda)
+    setInterval(odliczaj, 1000);
+  </script>
+</body>
+</html>
